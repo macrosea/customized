@@ -1,0 +1,63 @@
+#
+# Ubuntu Dockerfile
+#
+# https://github.com/dockerfile/ubuntu
+#
+
+# Pull base image.
+FROM <image>:<tag>
+
+MAINTAINER macrosea "macrosea@gmail.com"  
+
+ADD init-fake.conf /etc/init/fake-container-events.conf
+
+# undo some leet hax of the base image
+#RUN rm /usr/sbin/policy-rc.d; \
+#    rm /sbin/initctl; dpkg-divert --rename --remove /sbin/initctl
+
+WORKDIR  /root
+ENV HOME /root
+ENV NODE_VER 4.4.1
+ENV DEBIAN_FRONTEND noninteractive
+
+# Add files.
+ADD root/.bashrc /root/.bashrc
+ADD root/.gitconfig /root/.gitconfig
+ADD root/.scripts /root/.scripts
+
+RUN \
+    locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8; \
+    rm /sbin/initctl; dpkg-divert --rename --remove /sbin/initctl; \
+    /usr/sbin/update-rc.d -f ondemand remove; \
+    echo "remove some pointless services"; \
+    for f in \
+        /etc/init/u*.conf \
+        /etc/init/mounted-dev.conf \
+        /etc/init/mounted-proc.conf \
+        /etc/init/mounted-run.conf \
+        /etc/init/mounted-tmp.conf \
+        /etc/init/mounted-var.conf \
+        /etc/init/hostname.conf \
+        /etc/init/networking.conf \
+        /etc/init/tty*.conf \
+        /etc/init/plymouth*.conf \
+        /etc/init/hwclock*.conf \
+        /etc/init/module*.conf\
+    ; do \
+        dpkg-divert --local --rename --add "$f"; \
+    done; \
+    echo " ********************** "; \
+    echo '# /lib/init/fstab: cleared out for bare-bones Docker' > /lib/init/fstab; \
+    echo "apt-get install ..."; \
+    apt-get update && \
+    apt-get install -y ssh screen curl git htop man vim wget && \
+    apt-get install -y build-essential libssl-dev && \
+    apt-get install -y libboost-all-dev && \
+    rm -rf /var/lib/apt/lists/* ; \
+    echo "install node..."; \
+    git clone https://github.com/cnpm/nvm.git /root/.nvm && \
+    . /root/.nvm/nvm.sh && \
+    nvm install $NODE_VER
+
+# Define default command.
+CMD ["bash"]
