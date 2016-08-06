@@ -1,0 +1,10 @@
+source  ~/.vimrcs/shortcut.vim
+set nocscopeverbose 
+source  ~/.vimrcs/cscope_maps.vim
+
+"
+:nnoremap <leader><F1> :!less ~/.vimrcs/shortcut.vim<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+
+let g:indent_guides_auto_colors = 0
+set expandtab

@@ -1,0 +1,33 @@
+#!/bin/env bash
+
+sln()
+{
+    local FN="$1"
+    rm -f $HOME/.$FN
+    ln -s $HOME/.vimrcs/$FN $HOME/.$FN
+}
+
+prepare()
+{
+    curl https://j.mp/spf13-vim3 -L > spf13-vim.sh
+    chmod u+x spf13-vim.sh
+}
+
+install()
+{
+    rm -rf $HOME/.vimrcs
+    ln -s "$(cd $(dirname $0); pwd)/vimrcs" "$HOME/.vimrcs"
+    sln "vimrc.before.local"
+    sln "vimrc.bundles.local"
+    bash spf13-vim.sh
+}
+
+after()
+{
+    sln "vimrc.local"
+}
+
+#prepare
+install
+after
+
