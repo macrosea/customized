@@ -1,0 +1,6 @@
+#!/usr/bin/env  bash
+
+cd "$HOME/.space-vim"
+git pull
+vim +PlugInstall! +PlugUpdate +PlugClean +q
+cd -

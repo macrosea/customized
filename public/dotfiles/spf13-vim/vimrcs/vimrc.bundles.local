@@ -1,4 +1,7 @@
 "Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'derekwyatt/vim-fswitch'
-
+Bundle 'rking/ag.vim'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'airblade/vim-rooter'
+UnBundle 'mileszs/ack.vim'
 

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+txt='
+{
+  "libs": [
+  ],
+  "plugins": {
+    "node": {}
+  }
+}
+'
+
+act=$1
+
+f_tern_prj="./.tern-project"
+rm -f $f_tern_prj
+
+#find . -type f -iregex ".*\.js$" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+[ "X$act" = "X-t" ] && find . -type f -iregex ".*\.js$" -not -path "*/node_modules/*" -not -path *.tags -not -path '*/\.*' -exec jsctags {} -f \; | sed '/^$/d' | sort >.js.tags
+
+[ ! -f $f_tern_prj ] && echo "$txt">$f_tern_prj
+
+txt='
+{
+  extends: "eslint:recommended",
+  env: {
+    node: true,
+  },
+  "ecmaFeatures": {
+    "es6": true
+  },
+  rules: {
+    "no-console": "off",
+    "indent": [ "error", 2 ],
+    "no-var": "error", //用let/const代替var
+    "no-const-assign": "error", //不允许改变用const声明的变量
+    "prefer-const": "error", //如果一个变量不会被重新赋值，最好使用const进行声明。
+    "no-use-before-define": "error", //禁止定义前使用    
+  },
+}
+'
+
+f_rc="./.eslintrc"
+[ ! -f $f_rc ] && echo "$txt">$f_rc 

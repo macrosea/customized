@@ -1,0 +1,6 @@
+#!/usr/bin/env  bash
+
+cd /Users/$(whoami)/.spf13-vim-3
+git pull
+vim +BundleInstall! +BundleClean +q
+cd -

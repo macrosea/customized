@@ -1,0 +1,146 @@
+" Put layers you want to enable as well as extra private plugins
+function! UserInit()
+  " Put the layers you want to enable
+    Layer 'syntax-checking'
+
+    Layer 'unite'
+
+    Layer 'goyo'
+
+    Layer 'c-c++'
+    Layer 'javascript'
+    Layer 'python'
+    Layer 'html'
+    Layer 'markdown'
+
+    Layer 'colors'
+    Layer 'lightline'
+
+    Layer 'fzf'
+    Layer 'ycmd'
+
+    Layer 'git'
+
+    Layer 'better-defaults'
+    Layer 'programming'
+    Layer 'text-align'
+
+  " Put private plugins
+    " Plug 'junegunn/vim-github-dashboard'
+    MP 'mileszs/ack.vim'
+    MP 'marijnh/tern_for_vim'
+    MP 'airblade/vim-rooter'
+  " ---------------------------------
+  " ack.vim {
+    if IsDir('ack.vim')
+			if executable('ag')
+				let g:ackprg = '/usr/local/bin/ag --vimgrep --ignore .git --ignore .tags'
+			endif  
+			nnoremap <leader><F3> : silent! exe 'Ack! -Q ' . expand('<cword>')<Cr>
+    endif
+  " }
+
+  " ycmd {
+    if IsDir('YouCompleteMe')
+      let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+      let g:ycm_autoclose_preview_window_after_completion = 1
+      let g:ycm_autoclose_preview_window_after_insertion = 1
+      nnoremap <F7> :YcmCompleter GoTo<CR>
+      nnoremap <S-F7> :YcmCompleter GoToDefinition<CR>
+      nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
+      nnoremap <Leader>t :YcmCompleter GetType<CR>
+      nnoremap <Leader>d :YcmCompleter GetDoc<CR>
+      nnoremap <Leader>f  :YcmCompleter FixIt<CR>
+      nnoremap <leader><F7> :YcmForceCompileAndDiagnostics<CR>
+
+      let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \             're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
+    endif
+  " }
+  " vim-rooter {
+    if IsDir('vim-rooter')
+      let g:rooter_change_directory_for_non_project_files = 'current'
+      let g:rooter_change_directory_for_non_project_files = ''
+      let g:rooter_patterns = ['.js.tags', '.c.tags', '.git/']
+      let g:rooter_silent_chdir = 1
+    endif
+  " }
+
+endfunction
+"=======================================================================
+" Customize configuration
+function! UserConfig()
+
+  :nnoremap <leader>sv :source $MYVIMRC<cr>
+
+  " basic {
+    set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.gif,*.png,*.so,*.a
+    set ignorecase         " case insensitive by default
+    set infercase          " case inferred by default
+    set nowrap             " do not wrap line
+    set shiftround         " when at 3 spaces, and I hit > ... go to 4, not 5
+    set smartcase          " if there are caps, go case-sensitive
+    set shiftwidth=2       " auto-indent amount when using cindent, >>, << and stuff like that
+    set softtabstop=2      " when hitting tab or backspace, how many spaces should a tab be
+    set tabstop=2
+    "set smarttab          " ????
+    set expandtab          " no real tabs please!
+    autocmd filetype Makefile set noexpandtab
+    set iskeyword+=_,$,@,%,#         " none of these are word dividers
+    set formatoptions+=mM
+    set nofoldenable
+    set clipboard+=unnamed
+    set cpoptions=aABceFsmq
+    "             |||||||||
+    "             ||||||||+-- When joining lines, leave the cursor
+    "             |||||||      between joined lines
+    "             |||||||+-- When a new match is created (showmatch)
+    "             ||||||      pause for .5
+    "             ||||||+-- Set buffer options when entering the
+    "             |||||      buffer
+    "             |||||+-- :write command updates current file name
+    "             ||||+-- Automatically add <CR> to the last line
+    "             |||      when using :@r
+    "             |||+-- Searching continues at the end of the match
+    "             ||      at the cursor position
+    "             ||+-- A backslash has no special meaning in mappings
+    "             |+-- :write updates alternative file name
+    "             +-- :read updates alternative file name
+    "
+    set tags=.c.tags,.js.tags
+    :noremap <silent> <leader><cr> :noh<cr> 
+    set pastetoggle=<F2>
+    :noremap <leader>cp :let &mouse=(&mouse == 'a' ? '' : 'a')<CR>:set paste!<CR>:set nu!<CR>:set rnu!<CR>
+
+    " Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+    """""""""""""""""""""""""""""""""""""""""
+    " Move a line of text using Ctrl+[jk] or Comamnd+[jk] on mac
+    """""""""""""""""""""""""""""""""""'''
+    nmap <C-j> mz:m+<cr>`z
+    nmap <C-k> mz:m-2<cr>`z
+    vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+    vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+  " }
+
+endfunction
+
+
+
+
+
+
+
+
