@@ -2,5 +2,5 @@
 
 cd "$HOME/.space-vim"
 git pull
-vim +PlugInstall! +PlugUpdate +PlugClean +q
+vim +PlugUpdate +PlugClean +q
 cd -

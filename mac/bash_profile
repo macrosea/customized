@@ -1,13 +1,17 @@
 #java
 export JAVA_HOME="$(/usr/libexec/java_home)"
+export JRE_HOME=${JAVA_HOME}/jre  
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+export PATH=${JAVA_HOME}/bin:$PATH 
+
 
 #hadoop
-export HADOOP_HOME="/Users/$(whoami)/devel/hadoop-2.6.0"
-export PATH="$PATH:$HADOOP_HOME/bin"
+#export HADOOP_HOME="/Users/$(whoami)/devel/hadoop-2.6.0"
+#export PATH="$PATH:$HADOOP_HOME/bin"
 
 #ANT
-ANT_HOME="/Users/$(whoami)/devel/apache-ant-1.9.4" 
-export PATH="$PATH:$ANT_HOME/bin" 
+#ANT_HOME="/Users/$(whoami)/devel/apache-ant-1.9.4" 
+#export PATH="$PATH:$ANT_HOME/bin" 
 #maven
 export M2_HOME="/Users/$(whoami)/devel/apache-maven-3.2.5"
 export PATH="$PATH:$M2_HOME/bin"
