@@ -1,31 +1,41 @@
 " Put layers you want to enable as well as extra private plugins
 function! Layers()
   " Put the layers you want to enable
+    "--- checkers folder  ----------
     Layer 'syntax-checking'
-
+    " --- completion folder  -------
     Layer 'unite'
-
+    " --- distributions folder -----
+    Layer 'better-defaults'
+    " --- fun  -------------
     Layer 'goyo'
-
+    " --- lang -------------
     Layer 'c-c++'
     Layer 'javascript'
     Layer 'java'
     Layer 'python'
     Layer 'html'
     Layer 'markdown'
-
+    "--- programming --------
+    Layer 'editing'
+    "--- themes -------------
     Layer 'lightline'
-
+    "--- tools --------------
     Layer 'fzf'
     Layer 'ycmd'
-
+    Layer 'file-manager'
+    "--- version-control ----
     Layer 'git'
-
-    Layer 'better-defaults'
+    "--- vim ----------------
+    Layer 'better-motion'
+    Layer 'code-snippets'
     Layer 'programming'
     Layer 'text-align'
+
     " Put private plugins
     " Plug 'junegunn/vim-github-dashboard'
+
+    "add others
     MP 'mileszs/ack.vim'
     MP 'marijnh/tern_for_vim'
     MP 'airblade/vim-rooter'
@@ -74,9 +84,9 @@ function! UserConfig()
     set nowrap             " do not wrap line
     set shiftround         " when at 3 spaces, and I hit > ... go to 4, not 5
     set smartcase          " if there are caps, go case-sensitive
-    set shiftwidth=2       " auto-indent amount when using cindent, >>, << and stuff like that
-    set softtabstop=2      " when hitting tab or backspace, how many spaces should a tab be
-    set tabstop=2
+    set shiftwidth=4       " auto-indent amount when using cindent, >>, << and stuff like that
+    set softtabstop=4      " when hitting tab or backspace, how many spaces should a tab be
+    set tabstop=4
     "set smarttab          " ????
     set expandtab          " no real tabs please!
     autocmd filetype Makefile set noexpandtab
@@ -101,6 +111,7 @@ function! UserConfig()
     "             |+-- :write updates alternative file name
     "             +-- :read updates alternative file name
     "
+    let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
     set tags=.c.tags,.js.tags
     :noremap <silent> <leader><cr> :noh<cr> 
     set pastetoggle=<F2>

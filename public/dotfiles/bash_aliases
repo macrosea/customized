@@ -42,8 +42,8 @@ alias json="python -mjson.tool"
 alias mytmux="tmux -2 new-session -AD -s tmux-studio"
 
 #wine programs
-alias si='env LANG=en_US wine "c:\Program Files\Source Insight 3\Insight3.exe"'
-
+alias si3='env LANG=en_US wine "c:\Program Files (X86)\Source Insight 3\Insight3.exe"'
+alias si4='env LANG=en_US wine "c:\Program Files (X86)\Source Insight 4.0\sourceinsight4.exe"'
 #foxit
 alias pdf='wine "c:\Program Files\Foxit Software\Foxit Reader\FoxitReader.exe"'
 
