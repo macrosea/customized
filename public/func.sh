@@ -28,7 +28,7 @@ handle_alias()
     echo "handle bash aliases..."
     fn=bash_aliases
     f_priv=$D_PRIV/$fn
-    f_pub=$D_PUB/dotfiles/$fn
+    f_pub=$D_PUB/$fn
     test -f ~/.$fn || touch ~/.$fn
     key="#import-priv-alias"
     str="test -f $f_priv && source $f_priv $key"
@@ -45,7 +45,7 @@ handle_profile()
     echo "handle bash profile..."
     fn=bash_profile
     f_priv="$D_PRIV/$fn"
-    f_pub="$D_PUB/dotfiles/$fn"
+    f_pub="$D_PUB/$fn"
     test -f ~/.$fn || touch ~/.$fn
     key="#import-priv-profile"
     str="test -f $f_priv && source $f_priv $key"
@@ -63,7 +63,7 @@ handle_profile()
         * )         env_="screen";  echo "screen will be used" ;;
     esac
 
-    f_env="$D_PUB/dotfiles/$env_/$fn"
+    f_env="$D_PUB/$env_/$fn"
     key="#import-env-profile"
     str="test -f $f_env && source $f_env $key"
     [ $(grep -c "$key" ~/.$fn) -eq 0 ] && echo "$str" >> ~/.$fn

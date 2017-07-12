@@ -1,0 +1,30 @@
+#.bash_profile
+#
+export PS1='\u@\h:\W\$ '
+
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+#wine
+export WINEDEBUG=-all
+
+#
+# JAVA
+JAVA_HOME=
+OS=$(uname)
+if [ "X$OS" == "XLinux" ] 
+then
+    JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+elif [ "X$OS" == "XDarwin" ] 
+then
+    JAVA_HOME="$(/usr/libexec/java_home)"
+fi
+
+if [ "X$JAVA_HOME" != "X" ] 
+then
+    export JAVA_HOME
+    export JRE_HOME=${JAVA_HOME}/jre
+    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+    export PATH=${JAVA_HOME}/bin:$PATH
+fi
