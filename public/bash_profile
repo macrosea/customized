@@ -1,5 +1,7 @@
 #.bash_profile
 #
+OS=$(uname)
+
 export PS1='\u@\h:\W\$ '
 
 export LANGUAGE=en_US.UTF-8
@@ -8,11 +10,22 @@ export LC_ALL=en_US.UTF-8
 
 #wine
 export WINEDEBUG=-all
+if [ "X$OS" == "XDarwin" ]; then
+	export CLICOLOR=1
+	export LSCOLORS=GxFxCxDxBxegedabagaced
+	alias ls="ls -G"
 
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+
+	alias ll='ls -alF'
+	alias la='ls -A'
+	alias l='ls -CF'
+fi 
 #
 # JAVA
 JAVA_HOME=
-OS=$(uname)
 if [ "X$OS" == "XLinux" ] 
 then
     JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
