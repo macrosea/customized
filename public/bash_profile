@@ -26,12 +26,15 @@ fi
 #
 # JAVA
 JAVA_HOME=
-if [ "X$OS" == "XLinux" ] 
-then
-    JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-elif [ "X$OS" == "XDarwin" ] 
-then
-    JAVA_HOME="$(/usr/libexec/java_home)"
+which javac
+if [ $? -eq 0 ]; then
+    if [ "X$OS" == "XLinux" ] 
+    then
+        JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+    elif [ "X$OS" == "XDarwin" ] 
+    then
+        JAVA_HOME="$(/usr/libexec/java_home)"
+    fi
 fi
 
 if [ "X$JAVA_HOME" != "X" ] 
