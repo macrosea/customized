@@ -98,6 +98,7 @@ insapp()
   INSTALL=""
   which yum 2>&1 > /dev/null && INSTALL="yum install -y " 
   which apt-get 2>&1 > /dev/null && INSTALL="sudo apt-get install -y "
+  which brew 2>&1 > /dev/null && INSTALL="sudo brew install "
   [ "X$INSTALL" == "X" ] && throw 255 "which os ??"
   APP=$1
   $INSTALL $1
