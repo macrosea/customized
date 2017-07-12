@@ -1,5 +1,0 @@
-#udev
-#ST380011A HDD, installed at exteranl for THIS HTPC
-KERNEL=="sd[a-z][0-9]", ATTRS{product}=="ST380011A*", RUN+="/usr/local/sbin/udev4usb-storager %k ST380011A"
-#HITACHI HDD installed at interal for this HTPC
-KERNEL=="sd[a-z][0-9]", ATTRS{model}=="Hitachi HTS54168", RUN+="/usr/local/sbin/udev4usb-storager %k HITACHI"

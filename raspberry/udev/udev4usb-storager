@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "$(date) dev: $1, hdd: $2, $ACTION"  >> /tmp/udev.log
+dpath="/dev/$1"
+D_MNT="/media/hdd-$2"
+
+case $ACTION in
+  "add")
+    mkdir -p $D_MNT
+    mount $dpath $D_MNT
+    service rslsync restart
+    /etc/init.d/samba restart
+  ;;
+
+  "remove")
+    service rslsync stop
+    umount $dpath
+  ;;
+
+  *)
+    echo "WARNING unkown op" >> /tmp/udev.log
+  ;;
+esac
