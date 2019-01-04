@@ -1,0 +1,24 @@
+#/bin/bash
+
+set -u
+set -e
+
+d_cur=$(cd $(dirname $0); pwd)
+fn=rslsync
+f_exe="$d_cur/$fn"
+
+d_sbin=/usr/local/sbin
+[ -x rslsync ] || echo yes
+[ -x "$d_sbin/$f_exe" ] || [ -x "$f_exe" ] || (wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz --no-check-certificate && tarar -zxvf resilio-sync_x64.tar.gz)
+[ -x "$d_sbin/$f_exe" ] || [ -x "$f_exe" ] || (echo "not found rslsync executable file; exit install" && exit 1)
+
+sudo cp -f "$f_exe" "$d_sbin"
+
+f_conf="$d_cur/rslsync.conf"
+sudo cp -f "$f_conf" /etc/
+
+f_init="$d_cur/rslsync.sh"  #
+sudo cp -f $f_init /etc/init.d/rslsync
+sudo chmod a+x /etc/init.d/rslsync
+sudo update-rc.d rslsync defaults
+mkdir -p $HOME/.sync
