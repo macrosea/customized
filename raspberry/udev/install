@@ -10,6 +10,7 @@ d_rules="/etc/udev/rules.d"
 [ -f "$d_rules/$fn_rule" ] && rm "$d_rules/$fn_rule"
 cp -f $d_cur/$fn_rule "$d_rules/$fn_rule"
 
+d_sbin=/usr/local/sbin
 fn_exec="udev4usb-storager"
 [ -L "$d_sbin/$fn_exec" ] && rm "$d_sbin/$fn_exec"
 ln -s $d_cur/$fn_exec "$d_sbin/$fn_exec"

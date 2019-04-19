@@ -14,6 +14,8 @@ argc=$#
 echo "# customized " >> ${HOME}/.bash_profile
 
 echo "prepare to install some app from repository"
+sudo apt-get update
+
 apps=("vim"
        "git" )
 for var in ${apps[@]};do
