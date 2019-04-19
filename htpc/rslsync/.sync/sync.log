@@ -1,0 +1,18 @@
+﻿platform: Linux 4.4.0-1059-raspi2 #67-Ubuntu SMP Wed Jun 14 10:37:54 UTC 2017 armv7l
+version: 2.5.4.1009
+[19:11:55.645] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:11:55.646] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:11:55.646] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[20170625 19:11:55.648] ZIP: Can't locate [version] in zip, error -100.
+[19:12:16.554] Debug log mask has been set to FFFFFFFF
+[19:12:16.554] Features mask has been set to 0
+[19:12:16.557] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:12:16.557] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:12:16.557] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[20170625 19:12:16.559] ZIP: Can't locate [version] in zip, error -100.
+[19:12:27.786] Debug log mask has been set to FFFFFFFF
+[19:12:27.787] Features mask has been set to 0
+[19:12:27.790] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:12:27.790] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[19:12:27.790] VerifyFileWithHash failed on file /home/ubuntu/ws/customized/raspberry/rslsync/.sync/settings.dat with status 2.
+[20170625 19:12:27.792] ZIP: Can't locate [version] in zip, error -100.
