@@ -1,3 +1,5 @@
+#!/usr/bin/lua
+
 local lsocket  = require("socket")
 local http = require("socket.http")  
 local ltn12 = require("ltn12")  
@@ -134,8 +136,8 @@ end
 function send2ifttt(httputil, txt)
     local message = [[ {"value1": "]]..txt..[["}]]
     --print(message)
-    local IFTTT_KEY = 'KEY-????'
-    local IFTTT_EV = 'EVENT-NAME-???'
+    local IFTTT_KEY = 'dV0Aizo1Ik-K95DdnpVlHJ'
+    local IFTTT_EV = 'esphome'
     local ifttt_webhook_url = "https://maker.ifttt.com/trigger/"..IFTTT_EV.."/with/key/"..IFTTT_KEY
     local res,code = httputil.httpPost(ifttt_webhook_url, message, "json")  
     if code ~= 200 then  

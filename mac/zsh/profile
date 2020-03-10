@@ -1,0 +1,2 @@
+test -f  /Users/macrosea/ws/git/customized/mac/zsh/zsh_profile  && source /Users/macrosea/ws/git/customized/mac/zsh/zsh_profile
+test -f  /Users/macrosea/ws/git/customized/mac/zsh/zsh_alias  && source /Users/macrosea/ws/git/customized/mac/zsh/zsh_alias

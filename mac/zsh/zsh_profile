@@ -1,0 +1,58 @@
+#
+
+# Node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# JAVA
+JAVA_HOME=
+OS=Darwin
+which javac
+if [ $? -eq 0 ]; then
+    if [ "X$OS" == "XLinux" ] 
+    then
+        JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+    elif [ "X$OS" == "XDarwin" ] 
+    then
+        JAVA_HOME="$(/usr/libexec/java_home)"
+    fi
+fi
+
+## Finally, with Java 11, Oracle and the OpenJDK team decided to just distribute a single thing, the JDK. 
+## refer to: https://stackoverflow.com/questions/52584888/how-to-use-jdk-without-jre-in-java-11
+if [ "X$JAVA_HOME" != "X" ] 
+then
+    export JAVA_HOME
+    export JRE_HOME=${JAVA_HOME} 
+    export CLASSPATH=.:${JAVA_HOME}/lib
+    export PATH=${JAVA_HOME}/bin:$PATH
+fi
+
+# MVN
+export M2_HOME=$HOME/Environment/maven/apache-maven-3.6.2
+export PATH=$PATH:$M2_HOME/bin
+
+clear
+
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/macrosea/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/macrosea/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/macrosea/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/macrosea/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+### done
+
+
