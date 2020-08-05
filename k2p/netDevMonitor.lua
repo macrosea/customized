@@ -60,6 +60,17 @@ function mysplit(inputstr, sep)
     return t
 end
 
+function filter(element) 
+    element = string.upper(element)
+    local tbl = {"00:BB:3A:79:67:D8"}
+    for k, v in ipairs(tbl) do
+        if v == element then
+            return false
+        end
+    end
+    return true
+end
+
 -- get the relationship between mac and dev-name from /var/dhcp.releases
 --[[ $ cat /var/dhcp.leases
 1545663178 bc:9f:ef:c7:b6:b3 192.168.2.128 iPhone 01:bc:9f:ef:c7:b6:b3
@@ -71,7 +82,9 @@ function bind_mac_name()
         local res = mysplit(line, '%s')
         if (#res == 4) then  -- 1: mac, 2: ip, 3: name
             local mac = string.upper(res[1])
-            tbl_mac_name[mac] = res[3]
+	    if (filter(mac)) then
+            	tbl_mac_name[mac] = res[3]
+            end
         end
     end
     return tbl_mac_name
@@ -103,7 +116,7 @@ function bind_mac_ip()
     local file = io.open("/proc/net/statsPerIp", "r")
     for line in file:lines() do
         local ip, mac = string.match(line, "(%d+%.%d+%.%d+%.%d+)%s+(%S+)%s+.+")
-        if (ip ~= res) then 
+        if (mac ~= nil and filter(mac)) then 
             tbl_mac_ip[string.upper(mac)] = ip
         end
     end
